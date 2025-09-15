@@ -13,7 +13,7 @@
  */
 
 // Importamos los datos desde el archivo JSON usando ES6 import
-import bibliotecaData from './datos_biblioteca.json' assert { type: 'json' };
+import bibliotecaData from './datos_biblioteca.json' with { type: 'json' };
 
 // Creamos una copia de los datos para trabajar con ellos
 const biblioteca = { ...bibliotecaData };
@@ -34,7 +34,26 @@ const biblioteca = { ...bibliotecaData };
  * @return {boolean|string} - true si se realizó el préstamo, mensaje de error si no
  */
 function prestarLibro(idLibro, idEstudiante, fechaPrestamo) {
-  // Tu código aquí
+  let todoBien = true;
+  biblioteca.libros.forEach(element => {
+    if (element.id === idLibro) {
+      if (element.disponible === true) {
+        element.disponible = !element.disponible;
+        element.prestamos.push({ 'estudiante': idEstudiante, 'fechaPrestamo': fechaPrestamo, 'fechaDevolucion': null });
+        //console.log(element);
+      } else {
+        todoBien = !todoBien;
+      }
+
+    } else {
+      todoBien = !todoBien;
+    }
+
+  });
+
+  return todoBien;
+  /*   
+      }*/
 }
 
 
@@ -48,6 +67,16 @@ function prestarLibro(idLibro, idEstudiante, fechaPrestamo) {
  * @return {array} - Array con los libros que cumplen los criterios
  */
 function buscarLibros(criterios) {
+  let array = Array();
+  biblioteca.libros.forEach(element => {
+    if (element.categoria === criterios.categoria) {
+      if (element.disponible === criterios.disponible) {
+        //console.log(element);
+        array.push(element);
+      }
+    }
+  });
+  return array;
   // Tu código aquí
   // Ejemplo de criterios: {titulo: "javascript", disponible: true}
 }
@@ -56,12 +85,9 @@ function buscarLibros(criterios) {
 // ALGUNOS CASOS DE PRUEBA
 // Descomentar para probar tu implementación
 
-/*
+
 console.log("Probando préstamo de libro:");
-console.log(prestarLibro(1, 3, "2025-09-13"));
+console.log(prestarLibro(2, 3, "2025-09-13"));
 
 console.log("\nBuscando libros de programación disponibles:");
-console.log(buscarLibros({categoria: "Programación", disponible: true}));
-
-*/
-
+console.log(buscarLibros({ categoria: "Programación", disponible: true }));

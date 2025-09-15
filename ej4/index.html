@@ -2,17 +2,19 @@
 <html>
   <head>
     <title>Ejercicio 4</title>
+    <script src="ej4.js" defer></script>
   </head>
   <body>
-    <input name="name" placeholder="Name" required />
-    <input name="email" placeholder="Email" required />
-    <select name="role">
-      <option>Admin</option>
-      <option>Editor</option>
-      <option>Viewer</option>
+    <input id="name" placeholder="Name" required />
+    <input id="email" placeholder="Email" required />
+    <select id="role">
+      <option value="admin">Admin</option>
+      <option value="editor">Editor</option>
+      <option value="Viewer">Viewer</option>
     </select>
     <button id="add">Add</button>
 
-    <ul id="users"></ul>
+    <ul id="users">
+    </ul>
   </body>
 </html>

@@ -13,7 +13,7 @@
       "id": 2, 
       "titulo": "Diseño Web Responsive", 
       "autor": "Jane Smith", 
-      "disponible": false, 
+      "disponible": true, 
       "categoria": "Diseño",
       "añoPublicacion": 2021, 
       "prestamos": [
